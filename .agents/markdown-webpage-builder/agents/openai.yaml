@@ -1,0 +1,4 @@
+interface:
+  display_name: "Markdown Webpage Builder"
+  short_description: "Create Markdown pages and HTML"
+  default_prompt: "Use $markdown-webpage-builder to create a Markdown-driven webpage from this idea, then generate HTML in a new topic folder."
