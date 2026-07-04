@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Case Study Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#111;--paper:#faf7f2;--accent:#ff4d2e;--accent2:#cc00ff;--accent3:#ffd23f;--card:#fff;--muted:#555;--line:#111}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65}
+h1,h2,h3,.brand{font-family:"Space Grotesk",Inter,Arial,sans-serif;line-height:1.12}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.narrow{max-width:840px}
+nav{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:3px solid var(--ink)}
+nav .wrap{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-weight:700;font-size:19px}
+.navlinks{display:flex;gap:8px;list-style:none;font-size:13px;font-weight:800;flex-wrap:wrap}
+.navlinks a{display:block;padding:7px 10px;border-radius:999px}
+.navlinks a:hover{background:var(--ink);color:var(--paper)}
+.hero{background:var(--accent2);color:var(--paper);padding:84px 0 46px;border-bottom:3px solid var(--ink)}
+.eyebrow{display:inline-block;background:var(--accent3);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:800;margin-bottom:22px}
+h1{font-size:clamp(42px,7vw,78px);max-width:920px}
+.summary{font-size:20px;color:rgba(255,255,255,.88);max-width:720px;margin-top:24px}
+.cover{margin-top:42px;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--accent);aspect-ratio:16/8;display:flex;align-items:center;justify-content:center;color:var(--paper);font-weight:800}
+section{padding:78px 0;border-bottom:3px solid var(--ink)}
+section:last-of-type{border-bottom:none}
+h2{font-size:clamp(30px,4vw,46px);margin-bottom:24px}
+h3{font-size:22px;margin:30px 0 10px}
+p{font-size:17px;color:var(--muted);margin-bottom:14px}
+ul{padding-left:20px;margin:12px 0 0}
+li{font-size:17px;color:var(--muted);margin:7px 0}
+.snapshot{background:var(--card)}
+.snapshot-grid{display:grid;grid-template-columns:repeat(5,1fr);border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--card)}
+.snapshot-item{padding:18px;border-right:2px solid var(--ink)}
+.snapshot-item:last-child{border-right:none}
+.label{font-size:12px;font-weight:800;text-transform:uppercase;color:var(--muted);letter-spacing:.04em;margin-bottom:8px}
+.value{font-size:16px;font-weight:800}
+.two-col{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+.section-note{position:sticky;top:104px}
+.optional{display:inline-block;margin-left:8px;background:var(--paper);border:2px dashed var(--ink);border-radius:999px;padding:2px 9px;font-size:12px;font-weight:800;color:var(--muted)}
+.artifact{border:3px solid var(--ink);border-radius:14px;background:var(--card);min-height:260px;display:flex;align-items:center;justify-content:center;padding:24px;color:var(--muted);font-weight:800;margin:18px 0 28px}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.mini-card{border:2px solid var(--ink);border-radius:10px;background:var(--card);padding:18px;min-height:130px}
+.mini-card h3{font-size:18px;margin:0 0 8px}
+.highlight{background:var(--ink);color:var(--paper)}
+.highlight p,.highlight li{color:#d8d8d8}
+.highlight .artifact,.highlight .mini-card{background:#191919;border-color:var(--paper)}
+.back-row{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--ink);border-radius:999px;padding:12px 18px;font-weight:800;background:var(--card)}
+.btn:hover{background:var(--ink);color:var(--paper)}
+footer{padding:42px 0;text-align:center;color:#777;font-size:14px}
+@media(max-width:880px){.navlinks{display:none}.snapshot-grid,.two-col,.card-grid{grid-template-columns:1fr}.snapshot-item{border-right:none;border-bottom:2px solid var(--ink)}.snapshot-item:last-child{border-bottom:none}.section-note{position:static}.wrap{padding:0 18px}.hero,section{padding-left:0;padding-right:0}.cover{aspect-ratio:4/3}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="../index.html#work">Lola Tseng.</a>
+    <ul class="navlinks">
+      <li><a href="#context">Context</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#solution">Solution</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#reflection">Reflection</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">UX Design / Service Design / AI Product</span>
+      <h1>Project Name</h1>
+      <p class="summary">One-sentence project summary that explains the product, user, and design outcome.</p>
+      <div class="cover">Project Cover Image</div>
+    </div>
+  </header>
+
+  <section class="snapshot" id="snapshot">
+    <div class="wrap">
+      <h2>Project Snapshot</h2>
+      <div class="snapshot-grid">
+        <div class="snapshot-item"><div class="label">Role</div><div class="value">UX Designer</div></div>
+        <div class="snapshot-item"><div class="label">Team</div><div class="value">TBD</div></div>
+        <div class="snapshot-item"><div class="label">Project Duration</div><div class="value">TBD</div></div>
+        <div class="snapshot-item"><div class="label">Tools</div><div class="value">Figma, Miro, Notion</div></div>
+        <div class="snapshot-item"><div class="label">System Scope</div><div class="value">Optional</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="context">
+    <div class="wrap two-col">
+      <div class="section-note">
+        <span class="eyebrow">01</span>
+        <h2>Context</h2>
+      </div>
+      <div>
+        <h3>Project Background</h3>
+        <p>TBD</p>
+        <h3>Target Users</h3>
+        <p>TBD</p>
+        <h3>Project Goals</h3>
+        <ul><li>TBD</li><li>TBD</li><li>TBD</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="wrap two-col">
+      <div class="section-note">
+        <span class="eyebrow">02</span>
+        <h2>Research & Insights</h2>
+      </div>
+      <div>
+        <h3>Research Methods</h3>
+        <ul><li>TBD</li><li>TBD</li></ul>
+        <h3>Key Findings / Main Problems</h3>
+        <ul><li>TBD</li><li>TBD</li><li>TBD</li></ul>
+        <h3>Key Insights</h3>
+        <ul><li>TBD</li><li>TBD</li><li>TBD</li></ul>
+        <h3>Design Opportunities</h3>
+        <ul><li>TBD</li><li>TBD</li><li>TBD</li></ul>
+        <h3>How This Influenced the Design</h3>
+        <p>TBD</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="highlight" id="process">
+    <div class="wrap two-col">
+      <div class="section-note">
+        <span class="eyebrow">03</span>
+        <h2>Design Process</h2>
+      </div>
+      <div>
+        <h3>Service Blueprint / Sprint Questions + Map <span class="optional">Optional</span></h3>
+        <div class="artifact">Service blueprint or sprint map</div>
+        <h3>Information Architecture</h3>
+        <div class="artifact">Information architecture</div>
+        <h3>User Flow / Storyboarding</h3>
+        <div class="artifact">User flow or storyboard</div>
+        <h3>Wireframe</h3>
+        <div class="artifact">Wireframe</div>
+        <h3>Prototype</h3>
+        <div class="artifact">Prototype</div>
+        <h3>Key Design Decisions <span class="optional">Optional</span></h3>
+        <ul><li>TBD</li><li>TBD</li><li>TBD</li></ul>
+        <h3>UI Guide <span class="optional">Optional</span></h3>
+        <div class="artifact">UI guide</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="solution">
+    <div class="wrap two-col">
+      <div class="section-note">
+        <span class="eyebrow">04</span>
+        <h2>Solution</h2>
+      </div>
+      <div>
+        <h3>Final Solution</h3>
+        <p>TBD</p>
+        <h3>Main Features</h3>
+        <div class="card-grid">
+          <article class="mini-card"><h3>Feature 1</h3><p>TBD</p></article>
+          <article class="mini-card"><h3>Feature 2</h3><p>TBD</p></article>
+          <article class="mini-card"><h3>Feature 3</h3><p>TBD</p></article>
+        </div>
+        <h3>Key Screens</h3>
+        <div class="artifact">Key screen 1</div>
+        <div class="artifact">Key screen 2</div>
+        <h3>Design Rationale <span class="optional">Optional</span></h3>
+        <p>TBD</p>
+        <h3>Why This Design <span class="optional">Optional</span></h3>
+        <p>TBD</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact">
+    <div class="wrap two-col">
+      <div class="section-note">
+        <span class="eyebrow">05</span>
+        <h2>Impact <span class="optional">Optional</span></h2>
+      </div>
+      <div>
+        <h3>Testing Approach</h3>
+        <p>TBD</p>
+        <h3>User Feedback</h3>
+        <ul><li>TBD</li><li>TBD</li><li>TBD</li></ul>
+        <h3>Iteration Focus</h3>
+        <ul><li>TBD</li><li>TBD</li><li>TBD</li></ul>
+        <h3>Results</h3>
+        <p>TBD</p>
+        <h3>Future Improvements</h3>
+        <ul><li>TBD</li><li>TBD</li><li>TBD</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="reflection">
+    <div class="wrap two-col">
+      <div class="section-note">
+        <span class="eyebrow">06</span>
+        <h2>Reflection</h2>
+      </div>
+      <div>
+        <h3>What Went Well</h3>
+        <p>TBD</p>
+        <h3>What I Would Do Differently</h3>
+        <p>TBD</p>
+        <h3>Key Learnings</h3>
+        <ul><li>TBD</li><li>TBD</li><li>TBD</li></ul>
+        <h3>Skills Demonstrated</h3>
+        <ul><li>TBD</li><li>TBD</li><li>TBD</li></ul>
+        <div class="back-row">
+          <a class="btn" href="../index.html#work">Back to Work</a>
+          <a class="btn" href="../index.html#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Case study template for Lola Tseng portfolio.</div>
+</footer>
+</body>
+</html>
