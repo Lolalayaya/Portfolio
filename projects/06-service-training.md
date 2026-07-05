@@ -1,10 +1,10 @@
-# 電商平台介面優化 Service Design Class Project
+# 電商平台介面優化 Innovation and Design Thinking
 
 > Project Type: Service Design / UX Research
 
 以服務流程與使用情境為核心，整理問題並提出可被驗證的改善方向。
 
-![Project cover](../images/Service_Design_Class_Project/index.png "Project cover")
+![Project cover](../images/Innovation_and_Design_Thinking/index.png "Project cover")
 
 ---
 
@@ -40,13 +40,13 @@
 ### Research Methods
 
 - 同理心地圖
-![同理心地圖](../images/Service_Design_Class_Project/Empathy_Map.png "同理心地圖")
+![同理心地圖](../images/Innovation_and_Design_Thinking/Empathy_Map.png "同理心地圖")
 在我們受訪者的腦海中，他所聽到的PChome是台灣電商的龍頭、退貨機制很完善而且是官方直營所以沒有甚麼品質上的堪憂。在購買的過程中他感到很安心，出貨快速退貨的機制也很棒。
 然而他看見了PChome沒有評價的功能所以希望可以增加評價。在使用PChome的時候他也認為介面太過雜亂。那在整體使用過後，他給與他人對於PChome的評價是商品很多元但同時比較適合用來購買高單價的商品。
 統整來說，PChome的缺點為價錢和其他電商比較不一定比較便宜，搜尋介面不友善而且看不到其他使用者的評價。優點為出貨快速，退貨機制完善、商品品質有保障然後付款方式多元。
 
 - Persona
-![Persona](../images/Service_Design_Class_Project/Persona.png "Persona")
+![Persona](../images/Innovation_and_Design_Thinking/Persona.png "Persona")
 我們這次採訪的人是一位來自宗教系的同學，這位同學時常和別人一起打遊戲，且因為他一個月有兩萬的生活費，所以他的消費能力比一般人高了一些。因為愛打遊戲的關係，他很常會去使用PChome。
 他喜歡PChome的原因是因為他有24小時快速到貨的機制，比起其他電商，就算價格比較高，但品質還有在應急的時候會讓PChome贏過其他家。那大家應該都有在網購的時候踩雷，但因為退貨機制太麻煩所以覺得就算了。PChome因為是B2C，所以退貨機制很完善。
 這位同學覺得少數的缺點是因為商品很多然後分類沒有很方便使用，所以每次買東西都要找很久。再來就是PChome沒有買家評論的功能，所以沒辦法看到其他人的回饋。他希望PChome可以改善搜尋介面跟增加評論的部分。
@@ -55,7 +55,7 @@
 ### Key Findings / Main Problems
 
 - 親和圖
-![親和圖](../images/Service_Design_Class_Project/Affinity_Diagram.png "親和圖")
+![親和圖](../images/Innovation_and_Design_Thinking/Affinity_Diagram.png "親和圖")
 - - PChome的瀏覽介面雖然擁有多種語言可以瀏覽，但不易分類、有太多廣告、頁面太複雜且凌亂，讓使用起來的感覺並不方便與舒服。
 - - PChome的商品多元且因為是官方直營，因此品質上有一定的保障，且在價格上可以進行比較可以令顧客感到更安心。
 - - PChome擁有許多功能，除了普遍在購買時會運用到的購物車，還有免運折價券折扣、會員福利機制、多元取貨及付款方式，以及擁有完整的客服以及完善的退貨機制。
@@ -65,7 +65,7 @@
 ### Key Insights
 
 - 價值主張圖
-![價值主張圖](../images/Service_Design_Class_Project/Value_Proposition.png "價值主張圖")
+![價值主張圖](../images/Innovation_and_Design_Thinking/Value_Proposition.png "價值主張圖")
 - - Benefits:
     出貨速度快、取貨選項多、優惠券、會員制度、快速便利、付款多元、品質優良
 - - Features:
@@ -95,12 +95,12 @@ TBD
 
 ### Service Blueprint
 
-![服務藍圖](../images/Service_Design_Class_Project/Service_Blueprint.png "服務藍圖")
+![服務藍圖](../images/Innovation_and_Design_Thinking/Service_Blueprint.png "服務藍圖")
 若是想要購買電腦，只要打開電腦並搜尋PChome的介面，勾選所有需要的性能以及規格便能顯示出比較出來的表格讓顧客能夠將最符合自己需求的商品加至購物車中。（勾選功能是為統整買家的需求並會將資料按照所求分類給予更完的體驗。）下完訂單後便會通知出貨時間，PChome會接收訂單，賣家就會開始出貨的程序。在包裹分類運送後便會出貨至買家手上。
 
 ### Information Architecture
 
-![資訊架構](../images/Service_Design_Class_Project/Information_Architecture.png "資訊架構")
+![資訊架構](../images/Innovation_and_Design_Thinking/Information_Architecture.png "資訊架構")
 
 ### Prototype
 
@@ -130,10 +130,10 @@ TBD
 ### Key Screens
 
 - 篩選
-![篩選](../images/Service_Design_Class_Project/篩選.png "篩選")
+![篩選](../images/Innovation_and_Design_Thinking/篩選.png "篩選")
 在小分類所搜尋到的商品裡，我們可以透過右上角的篩選，選擇想要的規格。來找到想要的商品。
 - 功能比較
-![功能比較](../images/Service_Design_Class_Project/功能比較.png "功能比較")
+![功能比較](../images/Innovation_and_Design_Thinking/功能比較.png "功能比較")
 在選擇完想要的商品後，會出現如上圖所示的頁面（上面的那個表格在手機裡可以放大，避免字太小而閱讀有些吃力）
 上面會出現整體規格比較的總覽，包含有選取的各個品項及功能；底下會有選取的商品圖片、名稱以及特色。
 
