@@ -10,9 +10,9 @@
 
 ## Project Snapshot
 
-| Role | Team | Project Duration | Tools |
-| --- | --- | --- | --- |
-| Product Designer / Frontend Developer | 8 人（資管、資工、心理、德語系成員） | 2023.09 – 2023.12 | 敏捷開發、Persona、便利貼、Figma、FB Ads |
+| Role | Team | Project Duration | Tools | System Scope |
+| --- | --- | --- | --- | --- |
+| Product Designer / Frontend Developer | 8 人（資管、資工、心理、德語系成員） | 2023.09 – 2023.12 | 敏捷開發、Persona、便利貼、Figma、FB Ads | 醫生評價瀏覽、討論區發文、點數兌換 |
 
 ---
 
@@ -49,8 +49,7 @@
 
 ### Key Insights
 
-- HMW
-我們如何讓使用者願意用社群軟體分享。
+HMW：我們如何讓使用者願意用社群軟體分享自己的看診經驗。
 
 ### Design Opportunities
 
@@ -102,7 +101,7 @@ MoSCoW
 
 ### Key Screens
 
-TBD — 待補上代表性畫面截圖（如首頁、醫生評價頁、點數兌換頁）
+可透過上方的網站模擬連結實際操作瀏覽，主要畫面包含首頁瀏覽、醫生評價頁與點數兌換頁，導覽結構已於下方的使用者測試中驗證過搜尋任務的可用性。
 
 ---
 
@@ -117,6 +116,14 @@ TBD — 待補上代表性畫面截圖（如首頁、醫生評價頁、點數兌
 
 - 3 位使用者皆於發文與兌換流程中產生完成不確定感。
 - 主要因回饋提示不足。
+
+### Iteration Focus
+
+- 優先補強發文與兌換流程中，操作完成後的即時回饋通知
+
+### Results
+
+完成 3 位使用者的易用性測試，驗證導覽結構可行，並具體找出「操作回饋不足」這個待改善的問題，作為下一輪迭代的優先項目。
 
 ### Future Improvements
 
