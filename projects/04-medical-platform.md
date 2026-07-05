@@ -78,7 +78,7 @@
 
 ### Prototype
 
-[Prototype](https://lolala.pse.is/Taiwan_Physician_Rating_Website)
+[Figma Prototype](https://lolala.pse.is/Taiwan_Physician_Rating_Website)
 
 ### Key Design Decisions
 

@@ -67,29 +67,20 @@ TBD
 ## Design Process
 
 
-### Information Architecture
+### Activity Diagram
 
-TBD
+- 活動圖
+![活動圖](../images/Quest_for_Home_Safety/Activity_Diagram.png "活動圖")
 
-### User Flow
-
-TBD
+### State Diagram
+- 會員身分狀態圖 
+![會員身分狀態圖 ](../images/Quest_for_Home_Safety/State_Diagram1.png "會員身分狀態圖")
+- 模型狀態圖 
+![模型狀態圖 ](../images/Quest_for_Home_Safety/State_Diagram1.png "模型狀態圖")
 
 ### Prototype
 
-TBD
-
-### Key Design Decisions
-
-Optional.
-
-- TBD
-- TBD
-- TBD
-
-### UI Guide
-
-Optional.
+[Figma Prototype](https://lolala.pse.is/Quest_for_Home_Safety)
 
 ---
 
@@ -102,12 +93,15 @@ TBD
 ### Main Features
 
 - TBD
-- TBD
-- TBD
 
 ### Key Screens
 
-TBD
+- 首頁
+![首頁](../images/Quest_for_Home_Safety/home.png "首頁")
+可以透過點擊對應的圖示，了解不同類別的保險，讓保險商品分類清晰化，減少使用者尋找時間。
+- 模型匹配結果
+![模型匹配結果](../images/Quest_for_Home_Safety/model_result.png "模型匹配結果")
+透過輸入一些客戶的基本資料，運用決策樹進行分析，計算出適合推銷的保險商品。
 
 ### Design Rationale
 
@@ -163,9 +157,9 @@ TBD
 
 ### Key Learnings
 
-- TBD
-- TBD
-- TBD
+- 使用者導向：從模糊需求出發，學會以訪談方式釐清問題，避免套用既有假設。
+- 溝通能力：與他人合作時，透過持續討論，減少摩擦與誤解。
+- 自學成長：在實作過程中自學模型原理與前端介面語法，提升問題解決能力。
 
 ### Skills Demonstrated
 
