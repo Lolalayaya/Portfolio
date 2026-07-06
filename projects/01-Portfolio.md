@@ -12,7 +12,7 @@
 
 | Role | Team | Project Duration | Tools | System Scope |
 | --- | --- | --- | --- | --- |
-| Product Designer / AI Builder | 個人專案 | 2026 迄今 | Node.js, HTML, CSS, JavaScript, Markdown | 作品集網站（首頁 + 案例研究頁） |
+| Product Designer / AI Builder | 個人專案 | 2026.07 – 現在 | HTML, CSS, Markdown, AI 協作 | 作品集網站（首頁 + 案例研究頁） |
 
 ---
 
@@ -40,7 +40,7 @@
 ### Research Methods
 
 - 回顧自己過去手刻 HTML 版本作品集時實際遇到的維護問題
-- 參考 Jekyll、Hugo 等靜態網站產生器「樣板 + 內容」的核心概念，抓出適合單人維護、規模小的簡化版本
+- 參考靜態網站，產生「樣板 + 內容」的核心概念，抓出適合單人維護、規模小的簡化版本
 
 ### Key Findings / Main Problems
 
@@ -59,7 +59,7 @@
 
 ### How This Influenced the Design
 
-這些觀察讓我決定不導入完整前端框架，而是寫一支輕量的 Node.js 腳本，把 Markdown 的區塊（heading、清單、表格、引用、圖片）逐一轉換成固定的 HTML 版型，並用 class 命名（如 `.about`、`.projects`、`.process`）控制要套用哪一種版面。
+這些觀察讓我決定不導入完整前端框架，而是透過AI協作的方式，把 Markdown 的區塊（heading、清單、表格、引用、圖片）逐一轉換成固定的 HTML 版型，並用 class 命名（如 `.about`、`.projects`、`.process`）控制要套用哪一種版面。
 
 ---
 
@@ -107,7 +107,7 @@
 
 ### Design Rationale
 
-選擇自己寫一支 Node.js 腳本、而不是套用現成的靜態網站框架，是因為整體規模小、需求單純（六篇案例 + 一個首頁），直接寫一支專用的轉換腳本，比導入並學習一套完整框架的成本更低，也更容易依自己的需求客製版面規則。
+選擇自己寫腳本、而不是套用現成的靜態網站框架，是因為整體規模小、需求單純（六篇案例 + 一個首頁），直接寫一支專用的轉換腳本，比導入並學習一套完整框架的成本更低，也更容易依自己的需求客製版面規則。
 
 ---
 
@@ -146,6 +146,6 @@
 
 ### Skills Demonstrated
 
-- 用 Node.js 撰寫簡易的 Markdown → HTML 轉換工具
+- 透過AI協作，撰寫簡易的 Markdown → HTML 轉換工具
 - 資訊架構規劃：共用版型 + 差異化內容
 - CSS 設計系統維護：單一 stylesheet 供多頁共用
