@@ -57,7 +57,8 @@ function inline(value) {
     return stash(`<img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}"${titleAttr}>`);
   });
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
-    return stash(`<a href="${escapeHtml(href)}">${inline(label)}</a>`);
+    const externalAttrs = /^https?:\/\//i.test(href) ? ` target="_blank" rel="noopener noreferrer"` : "";
+    return stash(`<a href="${escapeHtml(href)}"${externalAttrs}>${inline(label)}</a>`);
   });
   html = escapeHtml(html);
   html = html.replace(/\u0000(\d+)\u0000/g, (_, index) => tokens[Number(index)] || "");
