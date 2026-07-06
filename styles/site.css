@@ -120,11 +120,8 @@ footer { padding: 44px 0; text-align: center; font-size: 14px; color: #777; }
 .proj-card { border: 3px solid var(--ink); border-radius: 16px; overflow: hidden; background: var(--card); transition: .2s; }
 .proj-card:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 var(--ink); }
 .proj-link { display: block; height: 100%; }
-.proj-thumb { height: 220px; background: var(--accent2); display: flex; align-items: center; justify-content: center; color: var(--paper); font-weight: 800; border-bottom: 3px solid var(--ink); overflow: hidden; }
+.proj-thumb { height: 220px; background: #fff; display: flex; align-items: center; justify-content: center; color: var(--ink); font-weight: 800; border-bottom: 3px solid var(--ink); overflow: hidden; }
 .proj-thumb img { width: 100%; height: 100%; object-fit: contain; }
-.proj-card:nth-child(2) .proj-thumb { background: var(--accent); }
-.proj-card:nth-child(3) .proj-thumb { background: var(--accent3); color: var(--ink); }
-.proj-card:nth-child(4) .proj-thumb { background: #6f5cff; }
 .proj-body { padding: 24px; }
 .proj-body h3 { font-size: 21px; margin-bottom: 8px; }
 
@@ -173,7 +170,7 @@ footer { padding: 44px 0; text-align: center; font-size: 14px; color: #777; }
 header.hero { padding: 84px 0 46px; border-bottom: 3px solid var(--ink); }
 header.hero h1 { font-size: clamp(42px, 7vw, 78px); max-width: 920px; }
 .summary { font-size: 20px; color: rgba(255, 255, 255, .88); max-width: 720px; margin-top: 24px; }
-.cover { margin-top: 42px; border: 3px solid var(--ink); border-radius: 14px; overflow: hidden; background: var(--accent); aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; color: var(--paper); font-weight: 800; }
+.cover { margin-top: 42px; border: 3px solid var(--ink); border-radius: 14px; overflow: hidden; background: #fff; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; color: var(--ink); font-weight: 800; }
 .cover img { width: 100%; height: 100%; object-fit: contain; }
 
 .snapshot { background: var(--card); }
@@ -188,6 +185,7 @@ header.hero h1 { font-size: clamp(42px, 7vw, 78px); max-width: 920px; }
 .highlight { background: var(--ink); color: var(--paper); }
 .highlight p, .highlight li { color: #d8d8d8; }
 .highlight figure { background: #191919; border-color: var(--paper); }
+.highlight table, .highlight th, .highlight td { color: var(--ink); }
 
 .back-row { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
 

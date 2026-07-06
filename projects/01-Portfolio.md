@@ -102,7 +102,7 @@
 ![作品列表 Work Section](../images/Portfolio/Work_Section.png "作品列表")
 六個作品以卡片方式呈現，點擊卡片即可進入對應案例頁，卡片版型完全共用同一份 CSS，不需要為新作品另外刻版面。
 
-![案例頁樣板 Case Study Template](../images/Portfolio/Case_Study_Template.png "案例頁樣板")
+![案例頁樣板 Case Study Template](../images/Portfolio/Temp.png "案例頁樣板")
 所有案例頁共用同一套版型（Snapshot、Context、Research & Insights…），差異只在 Markdown 內容本身。
 
 ### Design Rationale
