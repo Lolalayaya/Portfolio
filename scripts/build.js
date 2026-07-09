@@ -250,13 +250,12 @@ function isTagLine(block) {
 function renderCardSection(section, kind) {
   const cards = collectCards(section);
   const tag = section.blocks.find((block) => block.type === "quote");
-  const gridClass = kind === "philosophy" ? "phi-grid" : kind === "projects" ? "proj-grid" : kind === "playground" ? "pg-grid" : kind === "ai" ? "ai-grid" : "journal-list";
+  const gridClass = kind === "projects" ? "proj-grid" : kind === "playground" ? "pg-grid" : kind === "ai" ? "ai-grid" : "journal-list";
   const cardHtml = cards.map((card, index) => {
     const text = card.blocks.find((block) => block.type === "paragraph" && !block.text.startsWith("![") && !isTagLine(block));
     const image = card.blocks.find((block) => block.type === "paragraph" && block.text.startsWith("!["));
     const tagsBlock = card.blocks.find(isTagLine);
     const tagsHtml = tagsBlock ? `<div class="proj-tags">${tagsBlock.text.trim().split(/\s+/).map((t) => `<span class="tag-pill">${escapeHtml(t)}</span>`).join("")}</div>` : "";
-    if (kind === "philosophy") return `<div class="phi-card"><div class="phi-num">${String(index + 1).padStart(2, "0")}</div><h3>${inline(card.title)}</h3>${text ? renderBlock(text) : ""}</div>`;
     if (kind === "ai") return `<article class="ai-card"><div class="ai-num">${String(index + 1).padStart(2, "0")}</div><h3>${inline(card.title)}</h3>${text ? renderBlock(text) : ""}</article>`;
     if (kind === "projects") {
       const href = projectHrefForTitle(card.title, index);
@@ -272,13 +271,12 @@ function renderCardSection(section, kind) {
 function renderProcess(section) {
   const tag = section.blocks.find((block) => block.type === "quote");
   const steps = section.blocks.find((block) => block.type === "list" && block.ordered);
-  const items = steps ? steps.items.map((item) => {
-    const match = item.match(/^\*\*([^*]+)\*\*\s+-\s+(.+)$/);
-    const title = match ? match[1] : item;
-    const body = match ? match[2] : "";
-    return `<details class="process-step"><summary>${inline(title)} <span class="plus">+</span></summary><p>${inline(body)}</p></details>`;
-  }).join("") : "";
-  return `<section id="${section.id}" class="${section.className}"><div class="wrap">${tag ? renderBlock(tag) : ""}<h2>${inline(section.text)}</h2><div class="process-list">${items}</div></div></section>`;
+  const items = steps ? steps.items : [];
+  const flow = items.map((item, index) => {
+    const step = `<span class="flow-step">${inline(item)}</span>`;
+    return index < items.length - 1 ? `${step}<span class="flow-arrow">→</span>` : step;
+  }).join("");
+  return `<section id="${section.id}" class="${section.className}"><div class="wrap">${tag ? renderBlock(tag) : ""}<h2>${inline(section.text)}</h2><div class="process-flow">${flow}</div></div></section>`;
 }
 
 function renderLife(section) {
@@ -305,7 +303,6 @@ function renderGeneric(section) {
 
 function renderSection(section) {
   if (section.className === "about") return renderAbout(section);
-  if (section.className === "philosophy") return renderCardSection(section, "philosophy");
   if (section.className === "projects") return renderCardSection(section, "projects");
   if (section.className === "ai-journey") return renderCardSection(section, "ai");
   if (section.className === "process") return renderProcess(section);
