@@ -8,13 +8,13 @@
 
 :root {
   /* Colors — muted blue (calm/trust) + deep violet (empathy/creativity) + warm apricot (human warmth) */
-  --ink: #2E2A47;
-  --paper: #F8F6FC;
-  --accent: #5B7FBF;
-  --accent2: #6B4FA8;
-  --accent3: #E8A65C;
+  --ink: #1e0929;
+  --paper: #fefffe;
+  --accent: #8eafce;
+  --accent2: #7a28a3;
+  --accent3: #ffc150;
   --card: #fff;
-  --muted: #4A4460;
+  --muted: #4d4351;
 
   /* Fonts */
   --font-heading: "Space Grotesk", Inter, Arial, sans-serif;
