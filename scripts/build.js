@@ -27,6 +27,54 @@ function slugify(value) {
     .replace(/^-+|-+$/g, "") || "section";
 }
 
+let currentImageBaseDir = root;
+
+function readImageSize(absPath) {
+  let buffer;
+  try {
+    buffer = fs.readFileSync(absPath);
+  } catch (error) {
+    return null;
+  }
+
+  if (buffer.length >= 24 && buffer.toString("ascii", 1, 4) === "PNG") {
+    return { width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) };
+  }
+
+  if (buffer.length >= 4 && buffer[0] === 0xff && buffer[1] === 0xd8) {
+    let offset = 2;
+    while (offset + 9 < buffer.length) {
+      if (buffer[offset] !== 0xff) {
+        offset += 1;
+        continue;
+      }
+      const marker = buffer[offset + 1];
+      if (marker === 0xd8 || marker === 0x01 || (marker >= 0xd0 && marker <= 0xd9)) {
+        offset += 2;
+        continue;
+      }
+      const segmentLength = buffer.readUInt16BE(offset + 2);
+      const isSofMarker = (marker >= 0xc0 && marker <= 0xc3) || (marker >= 0xc5 && marker <= 0xc7) || (marker >= 0xc9 && marker <= 0xcb) || (marker >= 0xcd && marker <= 0xcf);
+      if (isSofMarker) {
+        return { width: buffer.readUInt16BE(offset + 7), height: buffer.readUInt16BE(offset + 5) };
+      }
+      offset += 2 + segmentLength;
+    }
+  }
+
+  return null;
+}
+
+function resolveImageDims(src) {
+  if (/^https?:\/\//i.test(src)) return null;
+  try {
+    const absPath = path.resolve(currentImageBaseDir, decodeURIComponent(src));
+    return readImageSize(absPath);
+  } catch (error) {
+    return null;
+  }
+}
+
 function parseHeading(raw) {
   const attrMatch = raw.match(/\s+\{([^}]+)\}\s*$/);
   const attrs = { id: "", className: "" };
@@ -54,7 +102,9 @@ function inline(value) {
   let html = String(value);
   html = html.replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]+)")?\)/g, (_, alt, src, title) => {
     const titleAttr = title ? ` title="${escapeHtml(title)}"` : "";
-    return stash(`<img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}"${titleAttr}>`);
+    const dims = resolveImageDims(src);
+    const dimAttrs = dims ? ` width="${dims.width}" height="${dims.height}"` : "";
+    return stash(`<img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}"${titleAttr}${dimAttrs}>`);
   });
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
     const externalAttrs = /^https?:\/\//i.test(href) ? ` target="_blank" rel="noopener noreferrer"` : "";
@@ -416,12 +466,14 @@ ${isServe ? `<script src="scripts/live-reload.js"></script>` : ""}
 function build() {
   fs.mkdirSync(caseStudiesDir, { recursive: true });
   projectPages = readProjectPages();
+  currentImageBaseDir = caseStudiesDir;
   projectPages.forEach((project, index) => {
     const previous = projectPages[index - 1]?.slug || "";
     const next = projectPages[index + 1]?.slug || "";
     fs.writeFileSync(path.join(caseStudiesDir, `${project.slug}.html`), renderProjectPage(project.markdown, { previous, next }), "utf8");
     console.log(`[build] ${path.join("projects", project.file)} -> ${path.join("case-studies", `${project.slug}.html`)}`);
   });
+  currentImageBaseDir = root;
   const markdown = fs.readFileSync(sourcePath, "utf8");
   fs.writeFileSync(outputPath, renderPage(markdown), "utf8");
   console.log(`[build] ${path.relative(root, sourcePath)} -> ${path.relative(root, outputPath)} ${new Date().toLocaleTimeString()}`);
