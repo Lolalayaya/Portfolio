@@ -83,6 +83,16 @@ Turning everyday observations into thoughtful digital experiences.
 
 ---
 
+## Journal {#journal .journal}
+
+> Design notes
+
+### 遊戲化不是萬能公式：從《衛了教你餵母乳》學到的八角框架心得
+
+2026.07
+
+---
+
 ## About {#about .about}
 
 > My Story
@@ -138,24 +148,6 @@ Turning everyday observations into thoughtful digital experiences.
 ### Visual notes
 
 從展覽、旅行、電影與書籍累積的視覺觀察。
-
----
-
-## Journal {#journal .journal}
-
-> Design notes
-
-### 如何用 AI 協助 MVP 的早期探索
-
-2026.07
-
-### 從資訊焦慮看 UX 的信任設計
-
-2026.06
-
-### Letterboxd 的觀影紀錄為什麼讓人願意持續使用
-
-2026.05
 
 ---
 

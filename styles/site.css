@@ -180,6 +180,7 @@ footer { padding: 44px 0; text-align: center; font-size: 14px; color: #777; }
 .journal-item { display: flex; justify-content: space-between; gap: 24px; padding: 24px 0; border-bottom: 2px solid var(--ink); }
 .journal-item:first-child { border-top: 2px solid var(--ink); }
 .journal-item h3 { font-size: 19px; }
+.journal-item h3 a:hover { color: var(--accent2); }
 .journal-item span { font-size: 13px; color: #777; font-weight: 700; white-space: nowrap; }
 
 .life { background: var(--accent2); color: var(--paper); }
@@ -226,6 +227,11 @@ header.hero h1 { font-size: clamp(42px, 7vw, 78px); max-width: 920px; }
 .highlight p, .highlight li { color: #d8d8d8; }
 .highlight figure { background: #221F38; border-color: var(--paper); }
 .highlight table, .highlight th, .highlight td { color: var(--ink); }
+
+.article-body { max-width: 760px; }
+.article-body h2 { margin-top: 12px; }
+.article-body figure { margin: 18px 0 28px; }
+.article-body figure img { width: 100%; height: auto; }
 
 .back-row { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
 

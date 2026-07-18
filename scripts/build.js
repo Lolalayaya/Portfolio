@@ -7,6 +7,8 @@ const sourcePath = path.join(root, "content.md");
 const outputPath = path.join(root, "index.html");
 const projectsDir = path.join(root, "projects");
 const caseStudiesDir = path.join(root, "case-studies");
+const journalDir = path.join(root, "journal");
+const articlesDir = path.join(root, "articles");
 const port = Number(process.env.PORT || 5173);
 const isWatch = process.argv.includes("--watch");
 const isServe = process.argv.includes("--serve");
@@ -312,7 +314,11 @@ function renderCardSection(section, kind) {
       const body = `<div class="proj-thumb">${image ? inline(image.text) : "Project image"}</div><div class="proj-body"><h3>${inline(card.title)}</h3>${text ? renderBlock(text) : ""}${tagsHtml}</div>`;
       return `<article class="proj-card">${href ? `<a class="proj-link" href="${href}">${body}</a>` : body}</article>`;
     }
-    if (kind === "journal") return `<article class="journal-item"><h3>${inline(card.title)}</h3><span>${text ? inline(text.text) : ""}</span></article>`;
+    if (kind === "journal") {
+      const href = journalHrefForTitle(card.title, index);
+      const titleHtml = href ? `<a href="${href}">${inline(card.title)}</a>` : inline(card.title);
+      return `<article class="journal-item"><h3>${titleHtml}</h3><span>${text ? inline(text.text) : ""}</span></article>`;
+    }
     return `<article class="pg-card"><h3>${inline(card.title)}</h3>${text ? renderBlock(text) : ""}</article>`;
   }).join("");
   return `<section id="${section.id}" class="${section.className}"><div class="wrap">${tag ? renderBlock(tag) : ""}<h2>${inline(section.text)}</h2><div class="${gridClass}">${cardHtml}</div></div></section>`;
@@ -437,6 +443,65 @@ function projectHrefForTitle(title, index) {
   return project ? `case-studies/${project.slug}.html` : "";
 }
 
+function renderJournalSection(section) {
+  const body = section.blocks.map(renderBlock).join("");
+  return `<section><div class="wrap article-body"><h2>${inline(section.text)}</h2>${body}</div></section>`;
+}
+
+function renderJournalPage(markdown) {
+  const { hero, sections } = splitDocument(parseBlocks(markdown));
+  const tag = hero.blocks.find((block) => block.type === "quote");
+  const summary = firstProjectParagraph(hero.blocks);
+  const pageTitle = `${hero.title} | Lola Tseng`;
+
+  return `<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${escapeHtml(pageTitle)}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/site.css">
+</head>
+<body>
+<nav><div class="wrap"><a class="brand" href="../index.html#journal">Lola Tseng.</a><ul class="navlinks"><li><a href="../index.html#journal">Back to Journal</a></li></ul></div></nav>
+<main>
+<header class="hero"><div class="wrap">${tag ? `<span class="eyebrow">${inline(tag.text)}</span>` : ""}<h1>${inline(hero.title)}</h1>${summary ? `<p class="summary">${inline(summary.text)}</p>` : ""}</div></header>
+${sections.map(renderJournalSection).join("\n")}
+<section><div class="wrap"><div class="back-row"><a class="btn-outline" href="../index.html#journal">Back to Journal</a></div></div></section>
+</main>
+<footer><div class="wrap">Designed & coded by Lola Tseng.</div></footer>
+<script src="../scripts/reveal.js"></script>
+<script src="../scripts/cursor-fx.js"></script>
+${isServe ? `<script src="../scripts/live-reload.js"></script>` : ""}
+</body>
+</html>
+`;
+}
+
+let journalPages = [];
+
+function readJournalPages() {
+  if (!fs.existsSync(journalDir)) return [];
+  return fs.readdirSync(journalDir)
+    .filter((file) => file.endsWith(".md") && !file.startsWith("_"))
+    .sort()
+    .map((file) => {
+      const markdown = fs.readFileSync(path.join(journalDir, file), "utf8");
+      const { hero } = splitDocument(parseBlocks(markdown));
+      const slug = path.basename(file, ".md");
+      return { file, slug, title: hero.title, markdown };
+    });
+}
+
+function journalHrefForTitle(title, index) {
+  const normalized = title.trim().toLowerCase();
+  const match = journalPages.find((entry) => entry.title.trim().toLowerCase() === normalized);
+  const entry = match || journalPages[index];
+  return entry ? `articles/${entry.slug}.html` : "";
+}
+
 function renderPage(markdown) {
   const { hero, sections } = splitDocument(parseBlocks(markdown));
   const nav = sections.map((section) => `<li><a href="#${section.id}">${escapeHtml(section.text)}</a></li>`).join("");
@@ -472,6 +537,13 @@ function build() {
     const next = projectPages[index + 1]?.slug || "";
     fs.writeFileSync(path.join(caseStudiesDir, `${project.slug}.html`), renderProjectPage(project.markdown, { previous, next }), "utf8");
     console.log(`[build] ${path.join("projects", project.file)} -> ${path.join("case-studies", `${project.slug}.html`)}`);
+  });
+  fs.mkdirSync(articlesDir, { recursive: true });
+  journalPages = readJournalPages();
+  currentImageBaseDir = articlesDir;
+  journalPages.forEach((entry) => {
+    fs.writeFileSync(path.join(articlesDir, `${entry.slug}.html`), renderJournalPage(entry.markdown), "utf8");
+    console.log(`[build] ${path.join("journal", entry.file)} -> ${path.join("articles", `${entry.slug}.html`)}`);
   });
   currentImageBaseDir = root;
   const markdown = fs.readFileSync(sourcePath, "utf8");
@@ -546,6 +618,7 @@ function watchPath(target, label) {
 if (isWatch) {
   watchPath(sourcePath, "content.md");
   if (fs.existsSync(projectsDir)) watchPath(projectsDir, "projects/*.md");
+  if (fs.existsSync(journalDir)) watchPath(journalDir, "journal/*.md");
 }
 
 if (isServe) startServer();
