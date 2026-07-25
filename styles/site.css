@@ -13,6 +13,8 @@
   --accent: #8eafce;
   --accent2: #7a28a3;
   --accent3: #ffc150;
+  --accent2-tint: #ecdcf5;
+  --accent2-soft: #d8b4fe;
   --card: #fff;
   --muted: #4d4351;
 
@@ -219,7 +221,8 @@ header.hero h1 { font-size: clamp(42px, 7vw, 78px); max-width: 920px; }
 .snapshot th, .snapshot td { border: 2px solid var(--ink); padding: 16px; text-align: left; vertical-align: top; }
 
 .two-col { display: grid; grid-template-columns: .85fr 1.15fr; gap: 48px; align-items: start; }
-.section-note { position: sticky; top: 104px; }
+.section-note { position: sticky; top: 104px; min-width: 0; }
+.section-body { min-width: 0; }
 .section-body figure { margin: 18px 0 28px; }
 .section-body figure img { width: 100%; height: auto; }
 
@@ -239,4 +242,41 @@ header.hero h1 { font-size: clamp(42px, 7vw, 78px); max-width: 920px; }
   .two-col { grid-template-columns: 1fr; }
   .section-note { position: static; }
   .cover { aspect-ratio: 4/3; }
+}
+
+/* =========================================================
+   Text-to-diagram timeline (Design Process component)
+   Authored in projects/*.md as an ordered list:
+   1. **[SYS] Title** — description
+   Kinds: SYS / INPUT / ENGINE / OUTPUT. ENGINE steps highlight
+   as the decision point. Add branches with ｜Label=>Text｜Label=>Text.
+   See parseTimelineStep() / renderTimeline() in scripts/build.js.
+   ========================================================= */
+.dt-timeline { margin-top: 28px; }
+.dt-step { position: relative; display: grid; grid-template-columns: 40px 1fr; gap: 18px; padding-bottom: 26px; }
+.dt-step:last-child { padding-bottom: 0; }
+.dt-rail { position: relative; display: flex; justify-content: center; }
+.dt-rail::before { content: ""; position: absolute; top: 36px; bottom: -26px; width: 2px; background: var(--ink); }
+.dt-step:last-child .dt-rail::before { display: none; }
+.dt-num { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 14px; border: 2px solid var(--ink); background: var(--paper); z-index: 1; }
+.dt-body { border: 2px solid var(--ink); border-radius: 14px; background: var(--card); padding: 18px 22px; }
+.dt-body h4 { font-family: var(--font-heading); font-size: 17px; margin: 0 0 6px; }
+.dt-body p { margin: 0; }
+.dt-kind { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; margin-bottom: 8px; color: var(--ink); }
+.dt-kind.sys, .dt-kind.output { background: var(--accent); }
+.dt-kind.input { background: var(--accent2-tint); }
+.dt-kind.engine { background: var(--accent3); }
+.dt-branch-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 14px; }
+.dt-branch-card { border: 2px solid var(--ink); border-radius: 10px; padding: 12px 14px; background: var(--paper); }
+.dt-branch-card span { display: block; font-size: 12px; font-weight: 800; color: var(--accent2); margin-bottom: 4px; }
+.dt-branch-card p { font-size: 14px; margin: 0; }
+
+.highlight .dt-rail::before { background: var(--paper); }
+.highlight .dt-num { background: #221F38; border-color: var(--paper); }
+.highlight .dt-body { background: #221F38; border-color: var(--paper); }
+.highlight .dt-branch-card { background: #2c2740; border-color: var(--paper); }
+.highlight .dt-branch-card span { color: var(--accent2-soft); }
+
+@media (max-width: 640px) {
+  .dt-branch-grid { grid-template-columns: 1fr; }
 }

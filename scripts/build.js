@@ -236,6 +236,41 @@ function splitDocument(blocks) {
   return { hero, sections };
 }
 
+// Text-to-diagram timeline: an ordered list where every item reads
+// "**[KIND] Title** — description" (KIND: SYS/INPUT/ENGINE/OUTPUT) renders
+// as connected step cards instead of a plain <ol>. Add branches on an
+// ENGINE step with ｜Label=>Text｜Label=>Text after the description.
+function parseTimelineStep(raw) {
+  const match = raw.match(/^\*\*\[(SYS|INPUT|ENGINE|OUTPUT)\]\s*([^*]+)\*\*\s*[-–—]\s*(.+)$/);
+  if (!match) return null;
+  const [, kind, title, rest] = match;
+  const parts = rest.split("｜");
+  const description = parts.shift().trim();
+  const branches = parts
+    .map((part) => {
+      const branchMatch = part.trim().match(/^(.+?)=>(.+)$/);
+      return branchMatch ? { label: branchMatch[1].trim(), text: branchMatch[2].trim() } : null;
+    })
+    .filter(Boolean);
+  return { kind: kind.toLowerCase(), title: title.trim(), description, branches };
+}
+
+function renderTimeline(steps) {
+  const stepsHtml = steps
+    .map((step, index) => {
+      const num = String(index + 1).padStart(2, "0");
+      const numClass = step.kind === "engine" ? "dt-num decision" : "dt-num";
+      const branchHtml = step.branches.length
+        ? `<div class="dt-branch-grid">${step.branches
+            .map((branch) => `<div class="dt-branch-card"><span>${inline(branch.label)}</span><p>${inline(branch.text)}</p></div>`)
+            .join("")}</div>`
+        : "";
+      return `<div class="dt-step"><div class="dt-rail"><div class="${numClass}">${num}</div></div><div class="dt-body"><span class="dt-kind ${step.kind}">${step.kind}</span><h4>${inline(step.title)}</h4><p>${inline(step.description)}</p>${branchHtml}</div></div>`;
+    })
+    .join("");
+  return `<div class="dt-timeline">${stepsHtml}</div>`;
+}
+
 function renderBlock(block) {
   if (block.type === "heading") return `<h${block.level}>${inline(block.text)}</h${block.level}>`;
   if (block.type === "quote") return `<span class="tag">${inline(block.text)}</span>`;
@@ -245,6 +280,10 @@ function renderBlock(block) {
     return `<p>${inline(block.text)}</p>`;
   }
   if (block.type === "list") {
+    if (block.ordered) {
+      const steps = block.items.map(parseTimelineStep);
+      if (steps.length && steps.every(Boolean)) return renderTimeline(steps);
+    }
     const tag = block.ordered ? "ol" : "ul";
     return `<${tag}>${block.items.map((item) => `<li>${inline(item)}</li>`).join("")}</${tag}>`;
   }

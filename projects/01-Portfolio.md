@@ -65,6 +65,15 @@
 
 ## Design Process
 
+### Process Overview
+
+把 build 腳本實際在做的事拆成步驟卡片，方便一眼看出「依 class 判斷版型」這個決策點在整個流程中的位置。
+
+1. **[SYS] 撰寫 Markdown 內容** — 首頁內容寫在 content.md，六篇案例寫在 projects/*.md，共用 heading 層級與 `{#id .class}` 語法慣例。
+2. **[SYS] build.js 解析區塊** — 逐行判斷 heading、清單、表格、引用、圖片，轉成結構化的 block 陣列。
+3. **[ENGINE] 依 class 選擇對應版面** — 首頁區塊依 class 分派到不同渲染函式；案例頁則固定套用同一套樣板，不需另外判斷 class。｜首頁區塊=>依 .about / .projects / .ai-journey / .process / .playground / .journal / .life / .contact 等 class，分派到對應的渲染函式。｜案例頁區塊=>不判斷 class，固定依 Snapshot、Context、Research & Insights、Design Process、Solution、Impact、Reflection 七個章節輸出。
+4. **[OUTPUT] 輸出靜態頁面** — 寫入 index.html 與 case-studies/*.html，`npm run dev` 另外提供本機即時預覽與自動重整。
+
 ### Information Architecture
 
 網站分兩層：首頁（`content.md` → `index.html`，包含 About、Design Philosophy、Work、Process、Contact）與案例頁（`projects/*.md` → `case-studies/*.html`，每篇都包含 Snapshot、Context、Research & Insights、Design Process、Solution、Impact、Reflection）。所有頁面共用同一份 `styles/site.css`，確保視覺一致。
