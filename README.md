@@ -1,8 +1,38 @@
-# Markdown Portfolio
+# Lola Tseng UX Designer Portfolio
 
-這個網站的內容來源是 `content.md`。編輯 Markdown 後，腳本會重新產生 `index.html`。
+一個由 Markdown 驅動的個人作品集網站，展示 UX 設計案例、AI 協作學習歷程與設計筆記。內容全部寫在 `content.md`，透過自製的 build 腳本產生純靜態 HTML，不依賴任何前端框架。
 
-## 使用方式
+🔗 Live site: [lolalayaya.github.io/Portfolio](https://lolalayaya.github.io/Portfolio/)
+
+## 這個網站是什麼
+
+- **UX 作品集**：6 個真實設計案例，涵蓋 AI 保險推薦、生理期紀錄 App（Petal Log）、醫療評價平台、遊戲化衛教 App 等，每個案例都有完整的 case study 頁面。
+- **AI 應用學習歷程**：記錄如何以 Vibe Coding 方式，結合 AI 協作從 0 到 1 打造真實上線的產品。
+- **Design Journal**：不定期發布的設計筆記與方法論反思。
+- **Markdown CMS**：整個網站的內容維護只需要編輯一份 Markdown 檔案，降低更新成本並保留視覺一致性。
+
+## 技術特色
+
+- 零框架、零建置依賴（僅用 Node.js 內建能力），`scripts/build.js` 把 `content.md` 轉換成 `index.html`。
+- 支援自訂版型 class（`.about`、`.projects`、`.process`、`.journal` 等），讓同一份 Markdown 語法能對應到不同的視覺區塊。
+- 內建 watch + 本地伺服器（`npm run dev`），編輯 Markdown 存檔即可即時預覽。
+- 每個作品集案例是獨立的 case study 靜態頁（`case-studies/`），來源為對應的 `projects/*.md`。
+
+## 專案結構
+
+```
+content.md          # 首頁內容來源（唯一需要編輯的檔案）
+index.html          # build 產生的首頁（勿手動編輯）
+projects/           # 各作品的 case study Markdown 來源
+case-studies/        # build 產生的 case study HTML
+articles/            # Design Journal 文章來源
+journal/              # build 產生的文章 HTML
+images/               # 網站與作品圖片
+styles/               # 網站樣式
+scripts/build.js     # Markdown → HTML 的產生腳本
+```
+
+## 開始使用
 
 1. 安裝 Node.js 18 以上版本。
 2. 執行 `npm run dev`。
@@ -115,3 +145,7 @@ Hero 的按鈕使用連結清單。第一個連結會是主要按鈕，第二個
 ```markdown
 > Selected projects
 ```
+
+## Contact
+
+有合作邀請、作品集回饋或想聊的產品問題，歡迎來信：[lola.jy.tseng@gmail.com](mailto:lola.jy.tseng@gmail.com)
