@@ -11,26 +11,16 @@
 - **Design Journal**：不定期發布的設計筆記與方法論反思。
 - **Markdown CMS**：整個網站的內容維護只需要編輯一份 Markdown 檔案，降低更新成本並保留視覺一致性。
 
-## 技術特色
+## 目前狀態
+
+已上線並持續維護中，內容（新增案例、文章）透過編輯 `content.md` 更新，無需改動程式碼。
+
+## 技術棧
 
 - 零框架、零建置依賴（僅用 Node.js 內建能力），`scripts/build.js` 把 `content.md` 轉換成 `index.html`。
 - 支援自訂版型 class（`.about`、`.projects`、`.process`、`.journal` 等），讓同一份 Markdown 語法能對應到不同的視覺區塊。
 - 內建 watch + 本地伺服器（`npm run dev`），編輯 Markdown 存檔即可即時預覽。
 - 每個作品集案例是獨立的 case study 靜態頁（`case-studies/`），來源為對應的 `projects/*.md`。
-
-## 專案結構
-
-```
-content.md          # 首頁內容來源（唯一需要編輯的檔案）
-index.html          # build 產生的首頁（勿手動編輯）
-projects/           # 各作品的 case study Markdown 來源
-case-studies/        # build 產生的 case study HTML
-articles/            # Design Journal 文章來源
-journal/              # build 產生的文章 HTML
-images/               # 網站與作品圖片
-styles/               # 網站樣式
-scripts/build.js     # Markdown → HTML 的產生腳本
-```
 
 ## 開始使用
 
@@ -47,7 +37,21 @@ npm run build
 
 產生結果會寫入 `index.html`。
 
-## Markdown 結構規則
+## 專案結構
+
+```
+content.md          # 首頁內容來源（唯一需要編輯的檔案）
+index.html          # build 產生的首頁（勿手動編輯）
+projects/           # 各作品的 case study Markdown 來源
+case-studies/        # build 產生的 case study HTML
+articles/            # Design Journal 文章來源
+journal/              # build 產生的文章 HTML
+images/               # 網站與作品圖片
+styles/               # 網站樣式
+scripts/build.js     # Markdown → HTML 的產生腳本
+```
+
+## 文件：Markdown 結構規則
 
 `#` 是首頁 Hero 的大標題。
 
