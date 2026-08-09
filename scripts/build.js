@@ -5,7 +5,11 @@ const http = require("http");
 const root = path.resolve(__dirname, "..");
 const sourcePath = path.join(root, "content.md");
 const outputPath = path.join(root, "index.html");
+const enSourcePath = path.join(root, "content.en.md");
+const enOutputPath = path.join(root, "index-en.html");
 const projectsDir = path.join(root, "projects");
+const enProjectsDir = path.join(root, "projects-en");
+const enJournalDir = path.join(root, "journal-en");
 const caseStudiesDir = path.join(root, "case-studies");
 const journalDir = path.join(root, "journal");
 const articlesDir = path.join(root, "articles");
@@ -432,9 +436,12 @@ function renderProjectPage(markdown, meta = {}) {
   const bodySections = sections.filter((section) => section !== snapshot);
   const nav = bodySections.map((section) => `<li><a href="#${section.id}">${escapeHtml(section.text)}</a></li>`).join("");
   const pageTitle = `${hero.title} | Lola Tseng`;
+  const lang = meta.lang || "zh-Hant";
+  const homeHref = meta.homeHref || "../index.html#work";
+  const langSwitch = meta.altHref ? `<a class="lang-switch" href="${escapeHtml(meta.altHref)}">${escapeHtml(meta.altLabel || "")}</a>` : "";
 
   return `<!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="${lang}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -444,12 +451,12 @@ function renderProjectPage(markdown, meta = {}) {
 <link rel="stylesheet" href="../styles/site.css">
 </head>
 <body>
-<nav><div class="wrap"><a class="brand" href="../index.html#work">Lola Tseng.</a><ul class="navlinks">${nav}</ul></div></nav>
+<nav><div class="wrap"><a class="brand" href="${homeHref}">Lola Tseng.</a><ul class="navlinks">${nav}</ul>${langSwitch}</div></nav>
 <main>
 <header class="hero"><div class="wrap">${tag ? `<span class="eyebrow">${inline(tag.text.replace(/^Project Type:\s*/i, ""))}</span>` : ""}<h1>${inline(hero.title)}</h1>${summary ? `<p class="summary">${inline(summary.text)}</p>` : ""}<div class="cover">${image ? inline(image.text) : "Project Cover Image"}</div></div></header>
 ${snapshot ? `<section id="${snapshot.id}" class="snapshot"><div class="wrap"><h2>${inline(snapshot.text)}</h2>${snapshot.blocks.map(renderBlock).join("")}</div></section>` : ""}
 ${bodySections.map(renderProjectSection).join("\n")}
-<section><div class="wrap"><div class="back-row">${meta.previous ? `<a class="btn-outline" href="${meta.previous}.html">Previous Project</a>` : `<span></span>`}<a class="btn-outline" href="../index.html#work">Back to Work</a>${meta.next ? `<a class="btn-outline" href="${meta.next}.html">Next Project</a>` : `<span></span>`}</div></div></section>
+<section><div class="wrap"><div class="back-row">${meta.previous ? `<a class="btn-outline" href="${meta.previous}.html">Previous Project</a>` : `<span></span>`}<a class="btn-outline" href="${homeHref}">Back to Work</a>${meta.next ? `<a class="btn-outline" href="${meta.next}.html">Next Project</a>` : `<span></span>`}</div></div></section>
 </main>
 <footer><div class="wrap">Designed & coded by Lola Tseng.</div></footer>
 <script src="../scripts/reveal.js"></script>
@@ -461,25 +468,31 @@ ${isServe ? `<script src="../scripts/live-reload.js"></script>` : ""}
 }
 
 let projectPages = [];
+let enProjectPages = [];
 
-function readProjectPages() {
-  if (!fs.existsSync(projectsDir)) return [];
-  return fs.readdirSync(projectsDir)
+function readProjectPages(dir) {
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir)
     .filter((file) => file.endsWith(".md") && !file.startsWith("_"))
     .sort()
     .map((file) => {
-      const markdown = fs.readFileSync(path.join(projectsDir, file), "utf8");
+      const markdown = fs.readFileSync(path.join(dir, file), "utf8");
       const { hero } = splitDocument(parseBlocks(markdown));
       const slug = path.basename(file, ".md");
       return { file, slug, title: hero.title, markdown };
     });
 }
 
+let currentLangSuffix = "";
+
 function projectHrefForTitle(title, index) {
   const normalized = title.trim().toLowerCase();
   const match = projectPages.find((project) => project.title.trim().toLowerCase() === normalized);
   const project = match || projectPages[index];
-  return project ? `case-studies/${project.slug}.html` : "";
+  if (!project) return "";
+  const hasEn = enProjectPages.some((entry) => entry.slug === project.slug);
+  const suffix = currentLangSuffix === ".en" && hasEn ? ".en" : "";
+  return `case-studies/${project.slug}${suffix}.html`;
 }
 
 function renderJournalSection(section) {
@@ -487,14 +500,18 @@ function renderJournalSection(section) {
   return `<section><div class="wrap article-body"><h2>${inline(section.text)}</h2>${body}</div></section>`;
 }
 
-function renderJournalPage(markdown) {
+function renderJournalPage(markdown, meta = {}) {
   const { hero, sections } = splitDocument(parseBlocks(markdown));
   const tag = hero.blocks.find((block) => block.type === "quote");
   const summary = firstProjectParagraph(hero.blocks);
   const pageTitle = `${hero.title} | Lola Tseng`;
+  const lang = meta.lang || "zh-Hant";
+  const homeHref = meta.homeHref || "../index.html#journal";
+  const backLabel = meta.backLabel || "Back to Journal";
+  const langSwitch = meta.altHref ? `<a class="lang-switch" href="${escapeHtml(meta.altHref)}">${escapeHtml(meta.altLabel || "")}</a>` : "";
 
   return `<!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="${lang}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -504,11 +521,11 @@ function renderJournalPage(markdown) {
 <link rel="stylesheet" href="../styles/site.css">
 </head>
 <body>
-<nav><div class="wrap"><a class="brand" href="../index.html#journal">Lola Tseng.</a><ul class="navlinks"><li><a href="../index.html#journal">Back to Journal</a></li></ul></div></nav>
+<nav><div class="wrap"><a class="brand" href="${homeHref}">Lola Tseng.</a><ul class="navlinks"><li><a href="${homeHref}">${escapeHtml(backLabel)}</a></li></ul>${langSwitch}</div></nav>
 <main>
 <header class="hero"><div class="wrap">${tag ? `<span class="eyebrow">${inline(tag.text)}</span>` : ""}<h1>${inline(hero.title)}</h1>${summary ? `<p class="summary">${inline(summary.text)}</p>` : ""}</div></header>
 ${sections.map(renderJournalSection).join("\n")}
-<section><div class="wrap"><div class="back-row"><a class="btn-outline" href="../index.html#journal">Back to Journal</a></div></div></section>
+<section><div class="wrap"><div class="back-row"><a class="btn-outline" href="${homeHref}">${escapeHtml(backLabel)}</a></div></div></section>
 </main>
 <footer><div class="wrap">Designed & coded by Lola Tseng.</div></footer>
 <script src="../scripts/reveal.js"></script>
@@ -520,14 +537,15 @@ ${isServe ? `<script src="../scripts/live-reload.js"></script>` : ""}
 }
 
 let journalPages = [];
+let enJournalPages = [];
 
-function readJournalPages() {
-  if (!fs.existsSync(journalDir)) return [];
-  return fs.readdirSync(journalDir)
+function readJournalPages(dir) {
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir)
     .filter((file) => file.endsWith(".md") && !file.startsWith("_"))
     .sort()
     .map((file) => {
-      const markdown = fs.readFileSync(path.join(journalDir, file), "utf8");
+      const markdown = fs.readFileSync(path.join(dir, file), "utf8");
       const { hero } = splitDocument(parseBlocks(markdown));
       const slug = path.basename(file, ".md");
       return { file, slug, title: hero.title, markdown };
@@ -538,14 +556,19 @@ function journalHrefForTitle(title, index) {
   const normalized = title.trim().toLowerCase();
   const match = journalPages.find((entry) => entry.title.trim().toLowerCase() === normalized);
   const entry = match || journalPages[index];
-  return entry ? `articles/${entry.slug}.html` : "";
+  if (!entry) return "";
+  const hasEn = enJournalPages.some((item) => item.slug === entry.slug);
+  const suffix = currentLangSuffix === ".en" && hasEn ? ".en" : "";
+  return `articles/${entry.slug}${suffix}.html`;
 }
 
-function renderPage(markdown) {
+function renderPage(markdown, opts = {}) {
   const { hero, sections } = splitDocument(parseBlocks(markdown));
   const nav = sections.map((section) => `<li><a href="#${section.id}">${escapeHtml(section.text)}</a></li>`).join("");
+  const lang = opts.lang || "zh-Hant";
+  const langSwitch = opts.altHref ? `<a class="lang-switch" href="${escapeHtml(opts.altHref)}">${escapeHtml(opts.altLabel || "")}</a>` : "";
   return `<!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="${lang}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -555,7 +578,7 @@ function renderPage(markdown) {
 <link rel="stylesheet" href="styles/site.css">
 </head>
 <body>
-<nav><div class="wrap"><a class="brand" href="#home">${escapeHtml(hero.title.replace(/\s+Portfolio$/i, "."))}</a><ul class="navlinks">${nav}</ul></div></nav>
+<nav><div class="wrap"><a class="brand" href="#home">${escapeHtml(hero.title.replace(/\s+Portfolio$/i, "."))}</a><ul class="navlinks">${nav}</ul>${langSwitch}</div></nav>
 ${renderHero(hero)}
 ${sections.map(renderSection).join("\n")}
 <footer><div class="wrap"><div>Designed & coded by Lola Tseng.</div><div class="stack">Edit content in content.md. Generated by scripts/build.js.</div></div></footer>
@@ -569,25 +592,75 @@ ${isServe ? `<script src="scripts/live-reload.js"></script>` : ""}
 
 function build() {
   fs.mkdirSync(caseStudiesDir, { recursive: true });
-  projectPages = readProjectPages();
+  projectPages = readProjectPages(projectsDir);
+  enProjectPages = readProjectPages(enProjectsDir);
   currentImageBaseDir = caseStudiesDir;
   projectPages.forEach((project, index) => {
     const previous = projectPages[index - 1]?.slug || "";
     const next = projectPages[index + 1]?.slug || "";
-    fs.writeFileSync(path.join(caseStudiesDir, `${project.slug}.html`), renderProjectPage(project.markdown, { previous, next }), "utf8");
+    const hasEn = enProjectPages.some((entry) => entry.slug === project.slug);
+    fs.writeFileSync(path.join(caseStudiesDir, `${project.slug}.html`), renderProjectPage(project.markdown, {
+      previous,
+      next,
+      lang: "zh-Hant",
+      homeHref: "../index.html#work",
+      altHref: hasEn ? `${project.slug}.en.html` : "",
+      altLabel: "EN",
+    }), "utf8");
     console.log(`[build] ${path.join("projects", project.file)} -> ${path.join("case-studies", `${project.slug}.html`)}`);
   });
+  enProjectPages.forEach((project, index) => {
+    const previous = enProjectPages[index - 1]?.slug || "";
+    const next = enProjectPages[index + 1]?.slug || "";
+    fs.writeFileSync(path.join(caseStudiesDir, `${project.slug}.en.html`), renderProjectPage(project.markdown, {
+      previous: previous ? `${previous}.en` : "",
+      next: next ? `${next}.en` : "",
+      lang: "en",
+      homeHref: "../index-en.html#work",
+      altHref: `${project.slug}.html`,
+      altLabel: "中文",
+    }), "utf8");
+    console.log(`[build] ${path.join("projects-en", project.file)} -> ${path.join("case-studies", `${project.slug}.en.html`)}`);
+  });
   fs.mkdirSync(articlesDir, { recursive: true });
-  journalPages = readJournalPages();
+  journalPages = readJournalPages(journalDir);
+  enJournalPages = readJournalPages(enJournalDir);
   currentImageBaseDir = articlesDir;
   journalPages.forEach((entry) => {
-    fs.writeFileSync(path.join(articlesDir, `${entry.slug}.html`), renderJournalPage(entry.markdown), "utf8");
+    const hasEn = enJournalPages.some((item) => item.slug === entry.slug);
+    fs.writeFileSync(path.join(articlesDir, `${entry.slug}.html`), renderJournalPage(entry.markdown, {
+      lang: "zh-Hant",
+      homeHref: "../index.html#journal",
+      backLabel: "Back to Journal",
+      altHref: hasEn ? `${entry.slug}.en.html` : "",
+      altLabel: "EN",
+    }), "utf8");
     console.log(`[build] ${path.join("journal", entry.file)} -> ${path.join("articles", `${entry.slug}.html`)}`);
+  });
+  enJournalPages.forEach((entry) => {
+    fs.writeFileSync(path.join(articlesDir, `${entry.slug}.en.html`), renderJournalPage(entry.markdown, {
+      lang: "en",
+      homeHref: "../index-en.html#journal",
+      backLabel: "Back to Journal",
+      altHref: `${entry.slug}.html`,
+      altLabel: "中文",
+    }), "utf8");
+    console.log(`[build] ${path.join("journal-en", entry.file)} -> ${path.join("articles", `${entry.slug}.en.html`)}`);
   });
   currentImageBaseDir = root;
   const markdown = fs.readFileSync(sourcePath, "utf8");
-  fs.writeFileSync(outputPath, renderPage(markdown), "utf8");
+  const hasEn = fs.existsSync(enSourcePath);
+  currentLangSuffix = "";
+  fs.writeFileSync(outputPath, renderPage(markdown, hasEn ? { altHref: "index-en.html", altLabel: "EN" } : {}), "utf8");
   console.log(`[build] ${path.relative(root, sourcePath)} -> ${path.relative(root, outputPath)} ${new Date().toLocaleTimeString()}`);
+
+  if (hasEn) {
+    const enMarkdown = fs.readFileSync(enSourcePath, "utf8");
+    currentLangSuffix = ".en";
+    fs.writeFileSync(enOutputPath, renderPage(enMarkdown, { lang: "en", altHref: "index.html", altLabel: "中文" }), "utf8");
+    currentLangSuffix = "";
+    console.log(`[build] ${path.relative(root, enSourcePath)} -> ${path.relative(root, enOutputPath)} ${new Date().toLocaleTimeString()}`);
+  }
 }
 
 let clients = [];
@@ -656,8 +729,11 @@ function watchPath(target, label) {
 
 if (isWatch) {
   watchPath(sourcePath, "content.md");
+  if (fs.existsSync(enSourcePath)) watchPath(enSourcePath, "content.en.md");
   if (fs.existsSync(projectsDir)) watchPath(projectsDir, "projects/*.md");
+  if (fs.existsSync(enProjectsDir)) watchPath(enProjectsDir, "projects-en/*.md");
   if (fs.existsSync(journalDir)) watchPath(journalDir, "journal/*.md");
+  if (fs.existsSync(enJournalDir)) watchPath(enJournalDir, "journal-en/*.md");
 }
 
 if (isServe) startServer();

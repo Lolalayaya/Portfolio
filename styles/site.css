@@ -40,6 +40,8 @@ nav .wrap { display: flex; justify-content: space-between; align-items: center; 
 .navlinks { display: flex; gap: 10px; list-style: none; font-weight: 700; font-size: 14px; flex-wrap: wrap; }
 .navlinks a { display: block; padding: 7px 11px; border-radius: 100px; }
 .navlinks a:hover { background: var(--ink); color: var(--paper); }
+.lang-switch { flex-shrink: 0; padding: 7px 14px; border-radius: 100px; border: 2px solid var(--ink); font-weight: 700; font-size: 13px; }
+.lang-switch:hover { background: var(--ink); color: var(--paper); }
 
 /* Section rhythm */
 section { padding: 84px 0; border-bottom: 2px solid var(--ink); }

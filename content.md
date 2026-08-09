@@ -2,19 +2,19 @@
 
 > Design inspired by everyday life 生活中不是缺少美，而是缺少發現美的眼睛
 
-Turning everyday observations into thoughtful digital experiences.
+用使用者研究定義問題，用 AI 協作把它做成真正能上線的產品。
 
-從日常觀察、使用者故事與真實情境出發，設計清楚、溫暖且能被持續使用的數位產品。
+從日常觀察、使用者故事與真實情境出發，設計清楚、溫暖且能被持續使用的數位產品——不只是交付一份設計稿，而是把它做到能被實際使用。
 
-**6 個作品・InnoConnect+ 企業金獎・AI 協作打造 2 個真實產品**
+**4 個 UX 案例・2 個 AI 協作實作產品・InnoConnect+ 企業金獎**
 
 - [View Projects](#work)
 - [Let's Connect](#contact)
 ---
 
-## Work {#work .projects}
+## Vibe Coding Projects {#vibe-coding .projects}
 
-> Selected projects
+> Built end-to-end with AI
 
 ### Portfolio System
 
@@ -26,11 +26,17 @@ Turning everyday observations into thoughtful digital experiences.
 
 ### Petal Log
 
-以產品設計流程，結合 UX 方法與 **AI Vibe Coding** 完成一個簡易紀錄女性生理期的網站。
+以產品設計流程，結合 UX 方法與 **AI Vibe Coding** 完成一個簡易紀錄女性生理期的網站，從原型到 MVP 一次到位並實際上線。
 
 #VibeCoding #使用者研究 #MVP
 
 ![Project cover](images/petal.jpg)
+
+---
+
+## Work {#work .projects}
+
+> Selected projects
 
 ### 尋保家 Quest for Home Safety
 
@@ -65,6 +71,33 @@ Turning everyday observations into thoughtful digital experiences.
 ![Project cover](images/Innovation_and_Design_Thinking/index.png)
 ---
 
+## About {#about .about}
+
+> My Story
+
+### About me
+
+用使用者研究定義問題，再透過 AI 協作把設計做成真正能上線的產品——這是我目前給自己的定位。
+
+做決定時，我習慣先自己想透多個方向，再找人討論，從交集裡收斂出答案；真心相信一件事時，我不會勉強妥協，而是花時間說服大家，讓共識剛好落在我原本想的方向。
+
+朋友常吐槽我「東西很多」，但擺放一定有自己的邏輯——這種「什麼都想收藏、但收藏要有系統」的個性，大概也是我一頭栽進資訊架構的原因。
+
+設計上，我相信先聽懂需求比急著提出解法更重要，原型要快、技術要盡量隱形，好的體驗往往藏在日常生活的小細節裡。
+
+#### Skills
+
+- UX Design
+- User Research
+- Prototyping
+- Service Design
+- AI-Assisted Development
+- Frontend Implementation
+
+![Profile placeholder](images/profile.jpg "Photo")
+
+---
+
 ## AI 應用學習經歷 {#ai-learning .ai-journey}
 
 > Continuous learning
@@ -90,32 +123,6 @@ Turning everyday observations into thoughtful digital experiences.
 ### 遊戲化不是萬能公式：從《衛了教你餵母乳》學到的八角框架心得
 
 2026.07
-
----
-
-## About {#about .about}
-
-> My Story
-
-### About me
-
-做決定時，我習慣先自己想透多個方向，再找人討論，從交集裡收斂出答案；真心相信一件事時，我不會勉強妥協，而是花時間說服大家，讓共識剛好落在我原本想的方向。
-
-朋友常吐槽我「東西很多」，但擺放一定有自己的邏輯——這種「什麼都想收藏、但收藏要有系統」的個性，大概也是我一頭栽進資訊架構的原因。
-
-設計上，我相信先聽懂需求比急著提出解法更重要，原型要快、技術要盡量隱形，好的體驗往往藏在日常生活的小細節裡。
-
-目前聚焦在 UX Design 與 AI 應用，期待把技術轉化成更直覺的使用經驗。
-
-#### Skills
-
-- UX Design
-- User Research
-- Service Design
-- AI
-- Frontend
-
-![Profile placeholder](images/profile.jpg "Photo")
 
 ---
 
