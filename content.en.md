@@ -12,7 +12,7 @@ Rooted in everyday observations, real user stories, and honest context — desig
 - [Let's Connect](#contact)
 ---
 
-## Vibe Coding Projects {#vibe-coding .projects}
+## Vibe Coding {#vibe-coding .projects}
 
 > Built end-to-end with AI
 
@@ -98,7 +98,7 @@ In design, I believe understanding the real need matters more than rushing to a 
 
 ---
 
-## AI Learning Journey {#ai-learning .ai-journey}
+## AI Learning {#ai-learning .ai-journey}
 
 > Continuous learning
 

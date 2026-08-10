@@ -12,7 +12,7 @@
 - [Let's Connect](#contact)
 ---
 
-## Vibe Coding Projects {#vibe-coding .projects}
+## Vibe Coding {#vibe-coding .projects}
 
 > Built end-to-end with AI
 
@@ -98,7 +98,7 @@
 
 ---
 
-## AI 應用學習經歷 {#ai-learning .ai-journey}
+## AI 學習歷程 {#ai-learning .ai-journey}
 
 > Continuous learning
 
