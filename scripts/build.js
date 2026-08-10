@@ -449,6 +449,8 @@ function renderProjectPage(markdown, meta = {}) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles/site.css">
+<link rel="icon" type="image/png" href="../images/favicon-32.png">
+<link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 </head>
 <body>
 <nav><div class="wrap"><a class="brand" href="${homeHref}">Lola Tseng.</a><ul class="navlinks">${nav}</ul>${langSwitch}</div></nav>
@@ -519,6 +521,8 @@ function renderJournalPage(markdown, meta = {}) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles/site.css">
+<link rel="icon" type="image/png" href="../images/favicon-32.png">
+<link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 </head>
 <body>
 <nav><div class="wrap"><a class="brand" href="${homeHref}">Lola Tseng.</a><ul class="navlinks"><li><a href="${homeHref}">${escapeHtml(backLabel)}</a></li></ul>${langSwitch}</div></nav>
@@ -576,6 +580,8 @@ function renderPage(markdown, opts = {}) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles/site.css">
+<link rel="icon" type="image/png" href="images/favicon-32.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 </head>
 <body>
 <nav><div class="wrap"><a class="brand" href="#home">${escapeHtml(hero.title.replace(/\s+Portfolio$/i, "."))}</a><ul class="navlinks">${nav}</ul>${langSwitch}</div></nav>
