@@ -445,6 +445,7 @@ function renderProjectPage(markdown, meta = {}) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>${escapeHtml(pageTitle)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -453,7 +454,7 @@ function renderProjectPage(markdown, meta = {}) {
 <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 </head>
 <body>
-<nav><div class="wrap"><a class="brand" href="${homeHref}"><img class="brand-mark" src="../images/logo-mark.png" alt="">Lola Tseng.</a><ul class="navlinks">${nav}</ul>${langSwitch}</div></nav>
+<nav><div class="wrap"><a class="brand" href="${homeHref}"><img class="brand-mark" src="../images/logo-mark.png" alt="">Lola Tseng.</a><ul class="navlinks">${nav}</ul><div class="nav-controls"><button type="button" class="theme-switch" aria-label="切換深色模式"></button>${langSwitch}</div></div></nav>
 <main>
 <header class="hero"><div class="wrap">${tag ? `<span class="eyebrow">${inline(tag.text.replace(/^Project Type:\s*/i, ""))}</span>` : ""}<h1>${inline(hero.title)}</h1>${summary ? `<p class="summary">${inline(summary.text)}</p>` : ""}<div class="cover">${image ? inline(image.text) : "Project Cover Image"}</div></div></header>
 ${snapshot ? `<section id="${snapshot.id}" class="snapshot"><div class="wrap"><h2>${inline(snapshot.text)}</h2>${snapshot.blocks.map(renderBlock).join("")}</div></section>` : ""}
@@ -463,6 +464,7 @@ ${bodySections.map(renderProjectSection).join("\n")}
 <footer><div class="wrap">Designed & coded by Lola Tseng.</div></footer>
 <script src="../scripts/reveal.js"></script>
 <script src="../scripts/cursor-fx.js"></script>
+<script src="../scripts/theme.js"></script>
 ${isServe ? `<script src="../scripts/live-reload.js"></script>` : ""}
 </body>
 </html>
@@ -517,6 +519,7 @@ function renderJournalPage(markdown, meta = {}) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>${escapeHtml(pageTitle)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -525,7 +528,7 @@ function renderJournalPage(markdown, meta = {}) {
 <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 </head>
 <body>
-<nav><div class="wrap"><a class="brand" href="${homeHref}"><img class="brand-mark" src="../images/logo-mark.png" alt="">Lola Tseng.</a><ul class="navlinks"><li><a href="${homeHref}">${escapeHtml(backLabel)}</a></li></ul>${langSwitch}</div></nav>
+<nav><div class="wrap"><a class="brand" href="${homeHref}"><img class="brand-mark" src="../images/logo-mark.png" alt="">Lola Tseng.</a><ul class="navlinks"><li><a href="${homeHref}">${escapeHtml(backLabel)}</a></li></ul><div class="nav-controls"><button type="button" class="theme-switch" aria-label="切換深色模式"></button>${langSwitch}</div></div></nav>
 <main>
 <header class="hero"><div class="wrap">${tag ? `<span class="eyebrow">${inline(tag.text)}</span>` : ""}<h1>${inline(hero.title)}</h1>${summary ? `<p class="summary">${inline(summary.text)}</p>` : ""}</div></header>
 ${sections.map(renderJournalSection).join("\n")}
@@ -534,6 +537,7 @@ ${sections.map(renderJournalSection).join("\n")}
 <footer><div class="wrap">Designed & coded by Lola Tseng.</div></footer>
 <script src="../scripts/reveal.js"></script>
 <script src="../scripts/cursor-fx.js"></script>
+<script src="../scripts/theme.js"></script>
 ${isServe ? `<script src="../scripts/live-reload.js"></script>` : ""}
 </body>
 </html>
@@ -576,6 +580,7 @@ function renderPage(markdown, opts = {}) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>${escapeHtml(hero.title)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -584,12 +589,13 @@ function renderPage(markdown, opts = {}) {
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 </head>
 <body>
-<nav><div class="wrap"><a class="brand" href="#home"><img class="brand-mark" src="images/logo-mark.png" alt="">${escapeHtml(hero.title.replace(/\s+Portfolio$/i, "."))}</a><ul class="navlinks">${nav}</ul>${langSwitch}</div></nav>
+<nav><div class="wrap"><a class="brand" href="#home"><img class="brand-mark" src="images/logo-mark.png" alt="">${escapeHtml(hero.title.replace(/\s+Portfolio$/i, "."))}</a><ul class="navlinks">${nav}</ul><div class="nav-controls"><button type="button" class="theme-switch" aria-label="切換深色模式"></button>${langSwitch}</div></div></nav>
 ${renderHero(hero)}
 ${sections.map(renderSection).join("\n")}
 <footer><div class="wrap"><div>Designed & coded by Lola Tseng.</div><div class="stack">Edit content in content.md. Generated by scripts/build.js.</div></div></footer>
 <script src="scripts/reveal.js"></script>
 <script src="scripts/cursor-fx.js"></script>
+<script src="scripts/theme.js"></script>
 ${isServe ? `<script src="scripts/live-reload.js"></script>` : ""}
 </body>
 </html>
