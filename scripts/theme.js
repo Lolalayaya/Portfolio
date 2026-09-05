@@ -2,6 +2,8 @@
   var root = document.documentElement;
   var btn = document.querySelector(".theme-switch");
   if (!btn) return;
+  var icon = btn.querySelector(".ts-icon") || btn;
+  var spins = 0;
 
   function current() {
     var explicit = root.getAttribute("data-theme");
@@ -11,7 +13,7 @@
 
   function paint() {
     var isDark = current() === "dark";
-    btn.textContent = isDark ? "☀︎" : "☾";
+    icon.textContent = isDark ? "☀︎" : "☾";
     btn.setAttribute("aria-label", isDark ? "切換為亮色模式" : "切換為深色模式");
   }
 
@@ -20,10 +22,11 @@
     root.setAttribute("data-theme", next);
     try { localStorage.setItem("theme", next); } catch (error) {}
     paint();
-    btn.classList.remove("is-flipping");
-    void btn.offsetWidth; // restart the animation if clicked again mid-flip
-    btn.classList.add("is-flipping");
-    setTimeout(function () { btn.classList.remove("is-flipping"); }, 340);
+    // Always spin forward by one more full turn — a transition retargets
+    // smoothly from wherever it currently is, so rapid clicks never snap
+    // back to 0deg the way restarting a keyframe animation would.
+    spins += 1;
+    icon.style.transform = "rotate(" + spins * 360 + "deg)";
   });
 
   paint();
