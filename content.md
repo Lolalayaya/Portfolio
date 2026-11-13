@@ -6,7 +6,7 @@
 
 從日常觀察、使用者故事與真實情境出發，設計清楚、溫暖且能被持續使用的數位產品——不只是交付一份設計稿，而是把它做到能被實際使用。
 
-**4 個 UX 案例・2 個 AI 協作實作產品・InnoConnect+ 企業金獎**
+**5 個 UX 案例・3 個 AI 協作實作產品・InnoConnect+ 企業金獎**
 
 - [View Projects](#work)
 - [Let's Connect](#contact)
@@ -37,6 +37,14 @@
 ## Work {#work .projects}
 
 > Selected projects
+
+### 柔雅老師的資訊柑仔店 Lola's IT Class Website
+
+把易用性測試包進國中資訊課，從 **18 個班**的實際操作中找出學生卡住的地方，再自己把發現做成改版並上線。
+
+#易用性測試 #使用者研究 #AI協作
+
+![Project cover](images/Teaching_Website/index.png)
 
 ### 尋保家 Quest for Home Safety
 
@@ -104,7 +112,7 @@
 
 ### 已掌握：Vibe Coding 實戰
 
-從 0 到 1 打造兩個真實上線的產品——這個作品集網站與 Petal Log，涵蓋需求釐清、介面設計到前端實作的完整流程。
+從 0 到 1 打造三個真實上線的產品——這個作品集網站、Petal Log，以及每天在課堂上使用的教學網站，涵蓋需求釐清、介面設計到前端實作的完整流程。
 
 ### 學習中：系統化精進
 

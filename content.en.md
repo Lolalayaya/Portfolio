@@ -6,7 +6,7 @@ Defining problems through user research, then shipping them into real products w
 
 Rooted in everyday observations, real user stories, and honest context — designing digital products that are clear, warm, and built to be actually used, not just handed off as a design file.
 
-**4 UX Case Studies・InnoConnect+ Gold Award・2 AI-Collaborated Products Shipped**
+**5 UX Case Studies・InnoConnect+ Gold Award・3 AI-Collaborated Products Shipped**
 
 - [View Projects](#work)
 - [Let's Connect](#contact)
@@ -37,6 +37,14 @@ A minimal period-tracking site built by combining UX methods with **AI Vibe Codi
 ## Work {#work .projects}
 
 > Selected projects
+
+### 柔雅老師的資訊柑仔店 Lola's IT Class Website
+
+Built a usability test into my junior high IT lessons, found where students got stuck across **18 classes**, and shipped the redesign myself.
+
+#UsabilityTesting #UserResearch #AICollaboration
+
+![Project cover](images/Teaching_Website/index.png)
 
 ### 尋保家 Quest for Home Safety
 
@@ -104,7 +112,7 @@ In design, I believe understanding the real need matters more than rushing to a 
 
 ### Mastered: Vibe Coding in Practice
 
-Built two real, shipped products from zero to one — this portfolio site and Petal Log — covering the full loop from clarifying requirements to interface design to frontend implementation.
+Built three real, shipped products from zero to one — this portfolio site, Petal Log, and the course website I use in class every day — covering the full loop from clarifying requirements to interface design to frontend implementation.
 
 ### In Progress: Systematic Deepening
 
