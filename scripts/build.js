@@ -114,7 +114,13 @@ function inline(value) {
   });
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
     const externalAttrs = /^https?:\/\//i.test(href) ? ` target="_blank" rel="noopener noreferrer"` : "";
-    return stash(`<a href="${escapeHtml(href)}"${externalAttrs}>${inline(label)}</a>`);
+    // Images inside the label were already stashed in this call's tokens; restore them here
+    // instead of letting the nested inline() (with its own empty token list) drop them.
+    const labelHtml = label.split(/(\u0000\d+\u0000)/).map((part) => {
+      const token = part.match(/^\u0000(\d+)\u0000$/);
+      return token ? tokens[Number(token[1])] || "" : inline(part);
+    }).join("");
+    return stash(`<a href="${escapeHtml(href)}"${externalAttrs}>${labelHtml}</a>`);
   });
   html = escapeHtml(html);
   html = html.replace(/\u0000(\d+)\u0000/g, (_, index) => tokens[Number(index)] || "");
@@ -351,7 +357,12 @@ function renderCardSection(section, kind) {
     const image = card.blocks.find((block) => block.type === "paragraph" && block.text.startsWith("!["));
     const tagsBlock = card.blocks.find(isTagLine);
     const tagsHtml = tagsBlock ? `<div class="proj-tags">${tagsBlock.text.trim().split(/\s+/).map((t) => `<span class="tag-pill">${escapeHtml(t)}</span>`).join("")}</div>` : "";
-    if (kind === "ai") return `<article class="ai-card"><div class="ai-num">${String(index + 1).padStart(2, "0")}</div><h3>${inline(card.title)}</h3>${text ? renderBlock(text) : ""}</article>`;
+    if (kind === "ai") {
+      // A paragraph of linked images ([![alt](thumb)](full) ...) renders as a thumbnail strip; lightbox.js enlarges them.
+      const certs = card.blocks.find((block) => block.type === "paragraph" && block.text.startsWith("[!["));
+      const certsHtml = certs ? `<div class="ai-certs">${inline(certs.text)}</div>` : "";
+      return `<article class="ai-card"><div class="ai-num">${String(index + 1).padStart(2, "0")}</div><h3>${inline(card.title)}</h3>${text ? renderBlock(text) : ""}${certsHtml}</article>`;
+    }
     if (kind === "projects") {
       const href = projectHrefForTitle(card.title, index);
       const body = `<div class="proj-thumb">${image ? inline(image.text) : "Project image"}</div><div class="proj-body"><h3>${inline(card.title)}</h3>${text ? renderBlock(text) : ""}${tagsHtml}</div>`;
@@ -596,6 +607,7 @@ ${sections.map(renderSection).join("\n")}
 <script src="scripts/reveal.js"></script>
 <script src="scripts/cursor-fx.js"></script>
 <script src="scripts/theme.js"></script>
+<script src="scripts/lightbox.js"></script>
 ${isServe ? `<script src="scripts/live-reload.js"></script>` : ""}
 </body>
 </html>

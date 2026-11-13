@@ -108,7 +108,9 @@
 
 ### 學習中：系統化精進
 
-2026.06 開始同步進行 Google 數位人才探索計畫與 Claude 101 課程，把單次的 Vibe Coding 經驗整理成可複製、可延伸的方法。
+2026 年完成 Google 數位人才探索計畫「AI 職場通識」與「數位行銷」兩個學程，並取得 [Gemini Certified Educator](https://edu.google.accredible.com/e2cd776d-e993-414a-b394-e7f2d4a8443c) 認證；目前正在準備 AI-901 證照，把單次的 Vibe Coding 經驗整理成可複製、可延伸的方法。
+
+[![Google 數位人才探索計畫 AI 職場通識學程結業證書](images/certs/ai-generalists-zh-thumb.webp)](images/certs/ai-generalists-zh.webp) [![Google 數位人才探索計畫 數位行銷學程結業證書](images/certs/digital-marketing-zh-thumb.webp)](images/certs/digital-marketing-zh.webp) [![Gemini Certified Educator 證書](images/certs/gemini-educator-thumb.webp)](images/certs/gemini-educator.webp)
 
 ### 人機協作心法
 

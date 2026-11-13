@@ -330,7 +330,19 @@ section.is-visible .life-grid > *:nth-child(6) { transition-delay: 300ms; }
 .ai-card p, .ai-card li { color: rgba(255, 255, 255, .88); }
 .ai-num { font-size: 14px; font-weight: 800; color: var(--amber-500); }
 .ai-card h3 { font-size: 22px; margin: 12px 0 10px; }
+.ai-certs { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 18px; }
+.ai-certs a { display: block; border-radius: 6px; overflow: hidden; border: 1px solid rgba(255, 255, 255, .3); background: #fff; transition: transform .2s ease, box-shadow .2s ease; }
+.ai-certs a:hover, .ai-certs a:focus-visible { transform: translateY(-2px); box-shadow: 0 8px 18px -8px rgba(0, 0, 0, .45); }
+.ai-certs a:focus-visible { outline: 2px solid var(--amber-500); outline-offset: 2px; }
+.ai-certs img { display: block; width: 100%; aspect-ratio: 1.414; object-fit: cover; object-position: left top; }
 
+.ai-card p a { color: inherit; text-decoration: underline; text-decoration-color: var(--amber-500); text-underline-offset: 3px; text-decoration-thickness: 2px; position: relative; z-index: 1; }
+.ai-card p a:hover { color: #fff; text-decoration-color: #fff; }
+
+.lightbox { border: 0; padding: 0; margin: auto; inset: 0; background: transparent; max-width: min(92vw, 1200px); max-height: 92vh; overflow: visible; }
+.lightbox::backdrop { background: rgba(10, 8, 20, .78); }
+.lightbox img { display: block; max-width: 100%; max-height: 88vh; width: auto; height: auto; border-radius: 8px; box-shadow: 0 20px 50px -10px rgba(0, 0, 0, .6); }
+.lightbox-close { position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: #fff; color: #222; font-size: 22px; line-height: 1; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 0, 0, .3); }
 .process-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 28px; }
 /* The chain draws itself in left-to-right — motion explains that this is a
    sequence, the same information the numbered dt-timeline steps carry. */

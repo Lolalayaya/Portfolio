@@ -108,7 +108,9 @@ Built two real, shipped products from zero to one — this portfolio site and Pe
 
 ### In Progress: Systematic Deepening
 
-Started the Google Digital Talent Exploration Program and the Claude 101 course in parallel from June 2026, turning one-off Vibe Coding experience into a method that's repeatable and extensible.
+In 2026 I completed the AI for Generalists and Digital Marketing tracks of Google's Digital Talent Exploration Program and earned the [Gemini Certified Educator](https://edu.google.accredible.com/e2cd776d-e993-414a-b394-e7f2d4a8443c) certification. I'm now preparing for the AI-901 exam, turning one-off Vibe Coding experience into a method that's repeatable and extensible.
+
+[![Google Digital Talent Exploration Program — AI for Generalists certificate](images/certs/ai-generalists-en-thumb.webp)](images/certs/ai-generalists-en.webp) [![Google Digital Talent Exploration Program — Digital Marketing certificate](images/certs/digital-marketing-en-thumb.webp)](images/certs/digital-marketing-en.webp) [![Gemini Certified Educator certificate](images/certs/gemini-educator-thumb.webp)](images/certs/gemini-educator.webp)
 
 ### Human-AI Collaboration Mindset
 
