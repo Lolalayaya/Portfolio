@@ -126,6 +126,7 @@
 
 ---
 
+<!-- Journal 暫時隱藏：文章校稿完成後，拿掉這行和下方的結尾註解即可重新上線
 ## Journal {#journal .journal}
 
 > Design notes
@@ -135,6 +136,7 @@
 2026.07
 
 ---
+-->
 
 ## Process {#process .process}
 

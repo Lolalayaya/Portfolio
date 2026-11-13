@@ -126,6 +126,7 @@ I treat AI as a discussion partner: think through the problem framing first, the
 
 ---
 
+<!-- Journal hidden for now: remove this line and the closing comment below to publish it again
 ## Journal {#journal .journal}
 
 > Design notes
@@ -135,6 +136,7 @@ I treat AI as a discussion partner: think through the problem framing first, the
 2026.07
 
 ---
+-->
 
 ## Process {#process .process}
 
