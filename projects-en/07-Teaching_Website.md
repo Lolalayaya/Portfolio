@@ -75,6 +75,12 @@ Every week, both grades move between the website, Google Forms, Scratchy, and th
 
 Both grades showed the same pattern: entering the site, finding lessons, and checking rules went smoothly. Students got stuck on "using what's inside the lesson" and "submitting."
 
+### Affinity Diagram
+
+I clustered the open-ended answers from Grade 8's bug sorting, "What feature would you add?", and "Where did you get stuck?" into six groups, after removing gibberish and jokes. The first three clusters match the task-test findings and became the scope of this redesign. The other big theme, "more games, don't block sites," is about classroom rules, so it sits in its own cluster and was left out of the website redesign.
+
+![Affinity diagram](../images/Teaching_Website/affinity-en.png "Affinity diagram")
+
 ### Key Insights
 
 - **The problem is unfamiliar pages, not leaving the site.** Both destinations were external platforms, yet the spreadsheet students use weekly was easy while the Scratchy assignment page they didn't know well was the hardest task. Students need cues that help them recognize where they've landed, not fewer jumps.
@@ -94,9 +100,19 @@ I ranked the fixes by strength of evidence and breadth of impact. The Scratch in
 
 Another frequent request was "more games, more free time, fewer blocked sites." That's a classroom rules issue, not a website usability issue, so I decided to leave it out of this redesign.
 
+I mapped the candidate changes onto a severity × effort matrix: severity comes from test evidence, effort from implementation work. All four shipped changes sit on the high-impact, low-effort side. Demo videos are high impact but need recording every week, so screenshots come first and the retest will decide.
+
+![Severity × effort matrix](../images/Teaching_Website/matrix-en.png "Severity × effort matrix")
+
 ---
 
 ## Design Process
+
+### Service Blueprint
+
+I mapped one lesson as a service blueprint. The frontstage includes not just the website but Google Forms, Scratchy, the Scratch website, and my verbal guidance in class. Self-reported "stuck" clusters at steps 4 and 5, where the website hands off to other platforms. Steps 2 and 3 felt smooth to students, but the task tests caught problems they didn't notice: wrong week, wrong line.
+
+![Service blueprint](../images/Teaching_Website/blueprint-en.png "Service blueprint")
 
 ### Reflecting on the Research Method
 
@@ -234,7 +250,6 @@ Being verified with a retest using the same task types at the end of the semeste
 ### Future Improvements
 
 - After the retest, compare task success before and after the redesign
-- Complete the affinity diagram, severity × effort matrix, and service blueprint to map the handoffs between the website, Google Forms, and Scratchy
 - Some students said they'd rather watch videos than play interactive challenges, so I'll consider adding demo GIFs or short videos for key steps
 
 ---
@@ -262,8 +277,8 @@ Being verified with a retest using the same task types at the end of the semeste
 
 ### Skills Demonstrated
 
-- User research: task test design, SUS, journey mapping, open-ended response coding, reflection on research methods
+- User research: task test design, SUS, journey mapping, affinity diagramming, service blueprinting, reflection on research methods
 - Data analysis: defining scoring rules, de-identification, analyzing the gap between self-report and performance
-- UX design: deriving changes from research findings, prioritization, information hierarchy and visual style design
+- UX design: deriving changes from research findings, prioritization with a severity × effort matrix, information hierarchy and visual style design
 - Development: Astro, component-based styles, admin editor features, GitHub Pages deployment
 - AI collaboration: using AI to speed up research tools, analysis, and implementation, while I own scoring rules, conclusions, and privacy decisions
